@@ -4,7 +4,7 @@
 
 ## git配置
 
-     `git config`  命令用来读取和写入环境变量，环境变量会存在特定的配置文件中     环境变量分为3级，系统，用户，仓库。  
+`git config`  命令用来读取和写入环境变量，环境变量会存在特定的配置文件中     环境变量分为3级，系统，用户，仓库。  
 
 | 命令               | 影响的配置文件 | 作用域   |
 | ------------------ | -------------- | -------- |
@@ -17,12 +17,6 @@
 > [user] 
 >           name = loufand 
 >           email = loufand@139.com
-
-      
-
-### 常用的配置命令
-
-  
 
 1. `git config --global user.name "loufand"` 设置用户名
 2. `git config --global user.email  "loufand@139.com"` 设置用户名邮箱
@@ -106,11 +100,17 @@ glob模式指的是shell使用的一种简化的正则表达式
 | [0-9] | 匹配0到9中的任意一个字符 |
 | ?     | 匹配一个任意字符         |
 
-   
+   ## git的标签（tag）
 
-------
+git可以给某个提交打上一个标签，来表示重要，便于快速查找
 
-  
+`git tag` 列出当前已有的标签，这个命令以字母顺序列出标签
+
+
+
+# git的分支branch
+
+
 
 # git的远程仓库
 
@@ -126,15 +126,27 @@ glob模式指的是shell使用的一种简化的正则表达式
 
 `git remote -v` 查看远程仓库，显示远程仓库的URL与权限。
 
+`git remote show [remote-name]` 查看远程仓库更多信息。
+
 ## 添加远程仓库
 
 `git remote add <shortname> <url>` 添加远程仓库
 
 ## 从远程仓库中拉取数据
 
+`git fetch [remote-name]` 从远程仓库拉取数据，
+
+`git pull [remote-name]` 从远程仓库拉取数据并合并（merge）。
+
+## 推送数据到远程仓库
+
+`git push [remote-name] [local-branch]` 推送数据
+
+## 远程仓库的移除与重命名
+
+` git remote rename ` 重命名远程仓库
+
+`git remote rm ` 删除远程仓库
 
 
 
-
-
-# git的分支branch
