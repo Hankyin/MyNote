@@ -74,5 +74,16 @@ ANSI C 还定义了特殊作用的预处理指令，如 #error、#pragma。
 
  \#pragma pack (n) //其中 n 称为对齐系数，取 1、2、4、8...
 
-### 字节对齐
+
+
+# C++构造函数
+
+C++11之前，对象的拷贝控制由三个函数决定：**拷贝构造函数**（Copy Constructor）、**拷贝赋值运算符**（Copy
+ Assignment operator）和**析构函数**（Destructor）。
+
+C++11之后，新增加了两个函数：**移动构造函数**（Move Constructor）和**移动赋值运算符**（Move Assignment opera）。
+
+**口诀**：构造函数与赋值运算符的区别是，构造函数在创建或初始化对象的时候调用，而赋值运算符在更新一个对象的值时调用。
+
+## 移动构造函数
 
