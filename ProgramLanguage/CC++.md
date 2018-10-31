@@ -20,9 +20,9 @@ C/C++ 程序中的源代码中包含以 # 开头的各种编译指令，这些�
 -  尖括号形式：如 #include<math.h>，预处理器直接到系统目录对应文件中搜索 math.h 文件，搜索不到则报错。系统提供的头文件一般采用该包含方式，而自定义的头文件不能采用该方式。
 -  双引号形式：如 #include"cal.h"，首先到当前工作目录下查找该文件，如果没有找到，再到系统目录下查找。包含自定义的头文件，一般采用该方式。虽然系统头文件采用此方式也正确，但浪费了不必要的搜索时间，故系统头文件不建议采用该包含方式。
 
-2) 
+## 宏定义：
 
-宏定义：包括定义宏 #define 和宏删除 #undef。
+包括定义宏 #define 和宏删除 #undef。
 
  以 #define 开头，可以定义无参数宏和带参的宏定义。程序中经常使用无参宏定义来定义符号常量。例如：
 
@@ -36,13 +36,16 @@ C/C++ 程序中的源代码中包含以 # 开头的各种编译指令，这些�
 #undef PI //删除前面该宏的定义
 ```
 
-3)
+ ## 条件编译：
 
- 条件编译：主要是为了有选择性地执行相应操作，防止宏替换内容（如文件等）的重复包含。常见的条件编译指令有 #if、#elif、#else、#endif、#ifdef、#ifndef。
+主要是为了有选择性地执行相应操作，防止宏替换内容（如文件等）的重复包含。常见的条件编译指令有 #if、#elif、#else、#endif、#ifdef、#ifndef。
 
-4) 
+## 特殊控制：
+ANSI C 还定义了特殊作用的预处理指令，如 #error、#pragma。
 
-特殊控制：ANSI C 还定义了特殊作用的预处理指令，如 #error、#pragma。
+### \#pragma
+
+
 
  \#error：使预处理器输出指定的错误信息，通常用于调试程序。
 
@@ -62,6 +65,47 @@ C++11之前，对象的拷贝控制由三个函数决定：**拷贝构造函数*
 C++11之后，新增加了两个函数：**移动构造函数**（Move Constructor）和**移动赋值运算符**（Move Assignment opera）。
 
 **口诀**：构造函数与赋值运算符的区别是，构造函数在创建或初始化对象的时候调用，而赋值运算符在更新一个对象的值时调用。
+
+
+
+```c++
+//构造函数测试类
+class A
+{
+public:
+	int x;
+	A(int x) : x(x) 
+    { 
+        cout << "Constructor" << endl; 
+    }
+    ~A()
+    { 
+        cout << "destructor" << endl; 
+    }
+	A(const A& a) : x(a.x) 
+    { 
+        cout << "Copy Constructor" << endl; 
+    }
+	A& operator=(A& a) 
+    { 
+        x = a.x; 
+        cout << "Copy Assignment operator" << endl; 
+        return *this; 
+    }
+	A(A&& a) : x(a.x) 
+    { 
+        cout << "Move Constructor" << endl; 
+    }
+	A& operator=(A&& a) 
+    { 
+        x = a.x;
+        cout << "Move Assignment operator" << endl; 
+        return *this; 
+    }
+};
+```
+
+
 
 ## 移动构造函数
 
