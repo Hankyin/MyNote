@@ -163,7 +163,7 @@ ar rcs libtest.a testA.o
     ld -shared test.o -o lib.so
 ```
 
-​    上面的命令行中-shared表明产生共享库，而-fPIC则表明使用地址无关代码。PIC：Position Independent Code.    
+​    上面的命令行中-shared表明产生共享库，而-fPIC则表明使用地址无关代码。PIC：Position Independent Code.    具体参见《程序员的自我修养》
 
 ​    Linux下编译共享库时，必须加上-fPIC参数，否则在链接时会有错误提示
 
@@ -177,7 +177,30 @@ ar rcs libtest.a testA.o
 gcc test.c -L ./ -lmylib 
 ```
 
+对于elf格式的可执行程序，是由ld-linux.so* 解析的，它先后搜索elf文件的DT_RPATH段->环境变量LD_LIBRARY_PATH->etc/ld.so.cache文件列表->/lib,/usr/lib ,找到库文件后将其载入内存。
 
+使用`file`命令可以查看文件格式。
+
+使用`ldd`命令查看软件需要的动态库。 
+
+使用共享库时需要将库加到环境变量中。具体操作：
+
+```bash
+#临时添加环境变量
+export LD_LIBRARY_PATH = ./lib:$LD_LIBRARY_PATH
+
+#永久生效
+##用户级别修改
+在~/.bashrc中添加上面那句话。重启终端或者source ~/.bashrc
+##系统级别
+在/etc/profile中添加上面那句话。重启系统或者source
+```
+
+或者更新ld.so.cache 。具体操作：
+
+1. 把动态库的绝对路径添加到/etc/ld.so.conf 
+
+2. 执行ldconfig -v 命令更新缓存文件。
 
 # makefile
 
