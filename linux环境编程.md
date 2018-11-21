@@ -204,6 +204,21 @@ export LD_LIBRARY_PATH = ./lib:$LD_LIBRARY_PATH
 
 # makefile
 
+要素：
+
+- 目标：要生成什么
+- 依赖：生成需要什么
+- 规则：如何生成。
+
+写法：
+
+```makefile
+target:test.c
+	gcc test.c -o test
+```
+注意，命令前面是tab，不是空格。
+
+
 
 
 # 文件io函数
