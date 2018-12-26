@@ -202,6 +202,24 @@ export LD_LIBRARY_PATH = ./lib:$LD_LIBRARY_PATH
 
 2. 执行ldconfig -v 命令更新缓存文件。
 
+
+
+# gdb调试
+
+调试程序之前需要先生成带调试信息的可执行文件
+
+gcc -g main.c
+
+注意加g
+
+gdb a.out 开始调试a.out
+
+开始调试后会进入gdb交互界面。
+
+常用命令：
+
+- l 
+
 # makefile
 
 要素：
